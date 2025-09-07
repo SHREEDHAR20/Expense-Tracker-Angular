@@ -1,0 +1,41 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+ nav {
+      background-color: #2d3436;
+      height: 60px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      width: 100vw;
+    }
+nav *{
+    font-size: 25px;
+    text-decoration: none;
+    color: white;
+    
+}
+
+footer{
+  width: 100vw;
+  background-color: #2d3436;
+  height: 50px;
+  position: absolute;
+  bottom: 0px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+} 

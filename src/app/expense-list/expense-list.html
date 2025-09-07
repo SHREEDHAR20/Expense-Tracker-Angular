@@ -1,0 +1,86 @@
+<!-- Profile Section -->
+
+<!-- Main Tracker Container -->
+<div class="container">
+  <h2>Expense Tracker</h2>
+
+  <!-- Form -->
+  <form class="form">
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" [(ngModel)]="amount" name="amount" placeholder="Enter amount" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" id="description" [(ngModel)]="description" name="description" placeholder="Enter description" />
+    </div>
+
+    <div class="form-group">
+      <label for="type">Category</label>
+      <select id="type" [(ngModel)]="type" name="type" (change)="onTypeChange()">
+        <option value="">Select Type</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Rent">Rent</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="showCustomTypeInput">
+      <label for="customType">Custom Category</label>
+      <input type="text" id="customType" [(ngModel)]="customType" name="customType" placeholder="Enter custom category" />
+    </div>
+
+    <button type="button" (click)="addToTable()">Add to Table</button>
+  </form>
+
+  <!-- Table for current session -->
+  <table *ngIf="expenses.length > 0" class="expense-table">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exp of expenses; let i = index">
+        <td>{{ exp.amount }}</td>
+        <td>{{ exp.description }}</td>
+        <td>{{ exp.type }}</td>
+        <td><button (click)="deleteExpense(i)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="save-btn" (click)="saveToDatabase()" [disabled]="expenses.length === 0">Add</button>
+
+  <!-- History Table -->
+  <div *ngIf="showHistory">
+    <h3>History</h3>
+    <table class="expense-table">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let h of history">
+          <td>{{ h.amount }}</td>
+          <td>{{ h.description }}</td>
+          <td>{{ h.type }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="logout-container">
+  <button class="logout-btn" (click)="logout()" title="Logout">
+    🔒 Logout
+  </button>
+</div>
